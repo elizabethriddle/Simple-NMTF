@@ -113,6 +113,11 @@ def NNDSVD_initialisation(A,k):
   
 
 def cluster_relabel(clust_vec):
+    """
+    Recalculate the clustering such that ordered properly.
+    :param clust_vec: original clustering
+    :return: Relabelling of clustering
+    """
     unique_vals,uniq_index = np.unique(clust_vec,return_index=True)
     convert_dic={clust_vec[sorted(uniq_index)[i]]:i for i in range(len(uniq_index))}
     new_clust_vec = [convert_dic[clust_vec[i]] for i in range(len(clust_vec))]
