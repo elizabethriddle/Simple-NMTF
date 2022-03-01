@@ -1,4 +1,11 @@
 def node_cluster_similarity(A,cluster_1,cluster_2):
+    """
+    Calculate node cluster similarity over a matrix (biclustering).
+    :param A: adjacency matrix 
+    :param cluster_1: clustering for the rows
+    :param cluster_2: clustering for the columns
+    :return: the biclustering performance over matrix A
+    """
     ## Gives sum of within cluster similarity (when combining or calculating final value divide by number of nodes only)
     
     # First need to calculate the similarity of edges between nodes in each cluster:
