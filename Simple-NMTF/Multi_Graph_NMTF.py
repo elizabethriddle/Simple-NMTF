@@ -62,6 +62,17 @@ def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
   
   
 def simple_multi_NMTF_NNDSVD_wo(A_CC,A_CU,A_CP,A_UU,cluster_sizes,sizes_of_attributes,initial_clustering,verbose=False):
+    """
+    Calculate the combined error for the current clustering.
+    :param A_CC: adjacency matrix for CC relation
+    :param A_CU: adjacency matrix for CU relation
+    :param A_CP: adjacency matrix for CP relation
+    :param cluster_sizes: the maximum size of clustering for each entitiy
+    :param sizes_of_attributes: size of each of the entities (i.e. C, U and P)
+    :param initial_clustering: this can be left blank if starting clustering from scratch or if updating input initial clustering
+    :param verbose: whether to print progress during implementation
+    :return: cluster indicator matrices G_C, G_U and G_P
+    """
     if not A_CC is None:
         A_CC = csr_matrix(A_CC)
     if not A_CU is None:
