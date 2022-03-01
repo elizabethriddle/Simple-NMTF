@@ -16,6 +16,16 @@ from sklearn.metrics.cluster import adjusted_rand_score
 from scipy.sparse.linalg import inv
 
 def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
+    """
+    Calculate the combined error for the current clustering.
+    :param A_CC: adjacency matrix for CC relation
+    :param A_CU: adjacency matrix for CU relation
+    :param A_CP: adjacency matrix for CP relation
+    :param G_C: cluster assignment matrix for C
+    :param G_U: cluster assignment matrix for U
+    :param G_P: cluster assignment matrix for P
+    :return: the error of the objective function
+    """
     G_C = csr_matrix(G_C)
     G_U = csr_matrix(G_U)
     G_P = csr_matrix(G_P)
