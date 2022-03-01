@@ -124,6 +124,13 @@ def cluster_relabel(clust_vec):
     return new_clust_vec
 
 def A_prob(A,cassign_0,cassign_1):
+    """
+    Calculate the probability of an edge between clusters given the biclustering
+    :param A: adjacency matrix
+    :param cassign_0: cluster assignment for rows
+    :param cassign_1: cluster assignment for columns
+    :return: matrix detailing the probability of connection between clusters
+    """
     cassign_0 = cluster_relabel(cassign_0)
     cassign_1 = cluster_relabel(cassign_1)
     clusters_1 = sorted(set(cassign_1))
@@ -139,6 +146,13 @@ def A_prob(A,cassign_0,cassign_1):
     return A_clusters
 
 def A_prob_new(A,cassign_0,cassign_1):
+    """
+    Calculate the probability of an edge between clusters given the biclustering
+    :param A: adjacency matrix
+    :param cassign_0: cluster assignment for rows
+    :param cassign_1: cluster assignment for columns
+    :return: matrix detailing the probability of connection between clusters
+    """
     cassign_0 = cluster_relabel(cassign_0)
     cassign_1 = cluster_relabel(cassign_1)
     #clusters_1 = sorted(set(cassign_1))
