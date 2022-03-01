@@ -62,6 +62,12 @@ def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
 
 
 def NNDSVD_initialisation(A,k):
+    """
+    Calculate the initialisation for matrix A using NNDSVD
+    :param A: adjacency matrix A
+    :param k: rank of decomposition
+    :return: NNDSVD decomposition initialisation
+    """
     U,Sigma,VT = svds(A,k,which='LM')
     if A.shape[0] == A.shape[1]:
         if np.allclose(A.toarray(),A.transpose().toarray()):
