@@ -18,6 +18,16 @@ from scipy.sparse.linalg import inv
 
 
 def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
+    """
+    Calculate the combined error for the objective function
+    :param A_CC: adjacency matrix for CC
+    :param A_CU: adjacency matrix for CU
+    :param A_CP: adjacency matrix for CP
+    :param G_C: cluster indicator matrix for C
+    :param G_U: cluster indicator matrix for U
+    :param G_P: cluster indicator matrix for P
+    :return: objective function error
+    """
     G_C = csr_matrix(G_C)
     G_U = csr_matrix(G_U)
     G_P = csr_matrix(G_P)
