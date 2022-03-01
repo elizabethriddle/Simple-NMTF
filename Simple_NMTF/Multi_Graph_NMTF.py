@@ -15,50 +15,7 @@ from sklearn.metrics.cluster import adjusted_rand_score
 #import cvxopt
 from scipy.sparse.linalg import inv
 
-def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
-    """
-    Calculate the combined error for the current clustering.
-    :param A_CC: adjacency matrix for CC relation
-    :param A_CU: adjacency matrix for CU relation
-    :param A_CP: adjacency matrix for CP relation
-    :param G_C: cluster assignment matrix for C
-    :param G_U: cluster assignment matrix for U
-    :param G_P: cluster assignment matrix for P
-    :return: the error of the objective function
-    """
-    G_C = csr_matrix(G_C)
-    G_U = csr_matrix(G_U)
-    G_P = csr_matrix(G_P)
-    GTG_C = G_C.transpose().dot(G_C).toarray()+np.diag([1e-10]*np.sum(G_C.shape[1]))
-    GTG_C_inv = inv(csr_matrix(GTG_C))
-    S_CC = GTG_C_inv.dot(G_C.transpose().dot(A_CC))
-    GTG_U = G_U.transpose().dot(G_U).toarray()+np.diag([1e-10]*np.sum(G_U.shape[1]))
-    GTG_U_inv = inv(csr_matrix(GTG_U))
-    S_CU = GTG_C_inv.dot(G_C.transpose().dot(A_CU.dot(G_U.dot(GTG_U_inv))))
-    # CP
-    GTG_P = G_P.transpose().dot(G_P).toarray()+np.diag([1e-10]*np.sum(G_P.shape[1]))
-    GTG_P_inv = inv(csr_matrix(GTG_P))
-    S_CP = GTG_C_inv.dot(G_C.transpose().dot(A_CP.dot(G_P.dot(GTG_P_inv))))
-    S_CC = GTG_C_inv.dot(G_C.transpose().dot(A_CC))
-    
-    CC_error = (A_CC-G_C.dot(S_CC)).power(2).sum()
-    CU_error = (A_CU-G_C.dot(S_CU.dot(G_U.transpose()))).power(2).sum()
-    CP_error = (A_CP-G_C.dot(S_CP.dot(G_P.transpose()))).power(2).sum()
-    
-    A_CC_norm = A_CC.power(2).sum()
-    A_CU_norm = A_CU.power(2).sum()
-    A_CP_norm = A_CP.power(2).sum()
-    
-    
-    error_rand = CC_error+CU_error+CP_error
-    error_scaled = error_rand/(A_CC_norm+A_CU_norm+A_CP_norm)
-    return(error_rand)
-  
-  
-  
-  
-  
-  
+
   
   
 def simple_multi_NMTF_NNDSVD_wo(A_CC,A_CU,A_CP,A_UU,cluster_sizes,sizes_of_attributes,initial_clustering,verbose=False):
