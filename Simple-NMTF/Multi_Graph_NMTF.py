@@ -63,7 +63,7 @@ def combined_error_frob_norm(A_CC,A_CU,A_CP,G_C,G_U,G_P):
   
 def simple_multi_NMTF_NNDSVD_wo(A_CC,A_CU,A_CP,A_UU,cluster_sizes,sizes_of_attributes,initial_clustering,verbose=False):
     """
-    Calculate the combined error for the current clustering.
+    Calculate simple NMTF with NNDSVD intialisation for clustering over A_CC, A_CU and A_UU
     :param A_CC: adjacency matrix for CC relation
     :param A_CU: adjacency matrix for CU relation
     :param A_CP: adjacency matrix for CP relation
@@ -244,6 +244,16 @@ def simple_multi_NMTF_NNDSVD_wo(A_CC,A_CU,A_CP,A_UU,cluster_sizes,sizes_of_attri
     
     
 def simple_multi_NMTF_NNDSVD_newsgroup(A_dw,A_dc,cluster_sizes,sizes_of_attributes,max_iter=100,verbose=False):
+    """
+    Calculate simple NMTF with NNDSVD intialisation for clustering over A_dw and A_dc for newsgroup data
+    :param A_dw: adjacency matrix for dw (article word) relation
+    :param A_dc: adjacency matrix for dc (article newsgroup)  relation
+    :param cluster_sizes: the maximum size of clustering for each entitiy
+    :param sizes_of_attributes: size of each of the entities (i.e. d, w and c)
+    :param max_iter: maximum number of iterations
+    :param verbose: whether to print progress during implementation
+    :return: cluster indicator matrices G_d, G_w and G_c
+    """
     if not A_dw is None:
         A_dw = csr_matrix(A_dw)
     if not A_dc is None:
